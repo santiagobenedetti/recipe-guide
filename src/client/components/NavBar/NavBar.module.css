@@ -1,0 +1,31 @@
+@import "../../vars.css";
+
+.nav {
+    background: var(--black);
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    height: 70px;
+    width: 70%;
+    padding-inline: 40px;
+    margin: 20px auto;
+
+    border-radius: 15px;
+}
+
+.nav svg {
+    color: var(--white);
+    height: 80%;
+    width: 11%;
+}
+.nav ul {
+    display: flex;
+    gap: 60px;
+    list-style: none;
+}
+.nav ul li a {
+    text-decoration: none;
+    color: var(--white);
+}

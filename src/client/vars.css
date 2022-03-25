@@ -1,0 +1,16 @@
+:root {
+    --white: #f5f5f5;
+    --black: #191C24;
+    --lapiz: #11629E;
+}
+
+body {
+    background: var(--white);
+    color: var(--black);
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--lapiz);
+}
