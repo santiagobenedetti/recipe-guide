@@ -4,11 +4,16 @@
     --lapiz: #11629E;
 }
 
+html {
+    overflow: hidden;
+}
+
 body {
     background: var(--white);
     color: var(--black);
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
+    max-width: 1440px;
 }
 
 h1, h2, h3, h4, h5 {

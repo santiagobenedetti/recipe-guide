@@ -1,0 +1,73 @@
+@import "../../vars.css";
+
+.title {
+    max-width: 590px;
+    font-size: 48px;
+    margin-inline: 105px;
+    margin-top: 180px;
+}
+
+.searchContainer {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 25px;
+    margin-inline: 80px;
+}
+.searchContainer p {
+    margin: 0 0 20px;
+}
+
+.searchBar {
+    display: flex;
+    gap: 10px;
+}
+.searchBar div {
+    display: flex;
+    background: var(--white);
+    color: var(--black);
+    padding: 5px;
+    border-radius: 5px;
+}
+.searchBar div input {
+    border: none;
+    text-align: center;
+}
+.searchBar button {
+    border: none;
+    border-radius: 5px;
+    background: #807E7E;
+    padding-inline: 30px;
+    color: var(--white);
+    cursor: pointer;
+}
+.searchBar button:hover {
+    background: var(--black);
+    border: 1px solid #807E7E;
+    transition: background 100ms ease-in-out;
+}
+
+.create {
+    background: var(--lapiz);
+    color: var(--white);
+    border-radius: 5px;
+    padding: 15px 50px;
+    margin-top: 80px;
+    width: 30%;
+    margin-inline: auto;
+    cursor: pointer;
+}
+.create:hover {
+    opacity: 0.9;
+    transition: background 100ms ease;
+}
+
+.image {
+    background-size: cover;
+    position: absolute;
+    top: 20%;
+    right: -100px;
+    height: 650px;
+    width: 650px;
+    border-radius: 400px;
+}

@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {NavBar, LandingPage} from "./components/index.js";
+import {NavBar, LandingPage, Footer} from "./components/index.js";
 import React from "react";
 import './vars.css';
 
@@ -9,6 +9,7 @@ function App() {
         <div id='app'>
           <Route path='/' component={NavBar}/>
           <Route exact path='/' component={LandingPage}/>
+          <Route path='/' component={Footer}/>
         </div>
       </Router>
   )

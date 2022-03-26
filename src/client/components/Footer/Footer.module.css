@@ -1,0 +1,19 @@
+@import "../../vars.css";
+
+.footer {
+    height: 100px;
+    background: var(--black);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+}
+
+.footer div {
+    height: 15px;
+    background: var(--lapiz);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+}
