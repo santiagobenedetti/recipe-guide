@@ -1,7 +1,12 @@
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {NavBar, LandingPage, Footer} from "./components/index.js";
 import React from "react";
 import './vars.css';
+import {
+  NavBar,
+  LandingPage,
+  Footer,
+  Recipes
+} from "./components/index.js";
 
 function App() {
   return (
@@ -9,6 +14,7 @@ function App() {
         <div id='app'>
           <Route path='/' component={NavBar}/>
           <Route exact path='/' component={LandingPage}/>
+          <Route exact path='/recipes' component={Recipes} />
           <Route path='/' component={Footer}/>
         </div>
       </Router>

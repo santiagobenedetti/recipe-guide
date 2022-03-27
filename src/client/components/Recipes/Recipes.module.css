@@ -1,0 +1,42 @@
+@import "../../vars.css";
+
+.header {
+    display: flex;
+    margin: 30px 100px;
+    justify-content: space-between;
+
+}
+.header h1 {
+    margin: 0;
+}
+
+.searchBar {
+    display: flex;
+    gap: 10px;
+}
+
+.searchBar button {
+    border: none;
+    background: var(--lapiz);
+    color: var(--white);
+    border-radius: 25px;
+    padding-inline: 25px;
+    cursor: pointer;
+}
+
+.searchBar div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--lapiz);
+    border-radius: 25px;
+    padding: 5px;
+}
+.searchBar div input {
+    border: none;
+    text-align: center;
+    background: var(--white);
+}
+.searchBar div input:focus {
+    border: none;
+}

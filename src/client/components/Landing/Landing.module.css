@@ -48,17 +48,18 @@
 }
 
 .create {
-    background: var(--lapiz);
+    background: linear-gradient(45deg, var(--lapiz), var(--black));
+    background-size: 200%;
     color: var(--white);
     border-radius: 5px;
     padding: 15px 50px;
     margin-top: 80px;
     margin-inline: 30% auto;
     cursor: pointer;
+    transition: background 750ms ease;
 }
 .create:hover {
-    opacity: 0.9;
-    transition: background 100ms ease;
+    background-position: 100%;
 }
 
 .image {
