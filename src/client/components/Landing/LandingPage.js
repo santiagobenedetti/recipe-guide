@@ -18,7 +18,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className={s.create}>CREATE AN ACCOUNT FOR FREE</div>
-        <img src={family} className={s.image}/>
+        <img src={family} className={s.image} alt='family'/>
       </React.Fragment>
   )
 }

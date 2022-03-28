@@ -3,17 +3,13 @@
 .footer {
     height: 100px;
     background: var(--black);
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
+    transform: translate(0, 0);
+    position: relative;
+    margin-top: 100px;
 }
 
 .footer div {
     height: 15px;
     background: var(--lapiz);
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
+    transform: translateY(100px);
 }
