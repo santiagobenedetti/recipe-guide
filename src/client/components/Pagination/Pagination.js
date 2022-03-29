@@ -23,13 +23,15 @@ export default function Pagination({postsPerPage, totalPosts, paginate, currentP
 
   return(
     <div className={s.pagination}>
-      <div className={currentPage === 1 ? `${s.active} ${s.first}`: s.first} onClick={() => paginate(1)}>1</div>
+      <div key={1} className={currentPage === 1 ? `${s.active} ${s.first}`: s.first} onClick={() => paginate(1)}>1</div>
       {pageNumbers.map(page => (
           <div
+              key={page}
               className={currentPage === page ? s.active : s.normal}
-              onClick={() => paginate(page)}>{page}</div>
+              onClick={() => paginate(page)}>{page}
+          </div>
       ))}
-      <div className={currentPage === lastPage ? `${s.active} ${s.last}`: s.last}  onClick={() => paginate(lastPage)}>{lastPage}</div>
+      <div key={lastPage} className={currentPage === lastPage ? `${s.active} ${s.last}`: s.last}  onClick={() => paginate(lastPage)}>{lastPage}</div>
     </div>
   )
 }

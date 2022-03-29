@@ -25,6 +25,12 @@ export default function Recipes() {
     getRecipes();
   }, [])
 
+  useEffect(() => {
+    setTimeout(
+        () => window.scroll({behavior: "smooth", top: 0})
+    , 150)
+  }, [currentPage]);
+
   const indexLastPost = currentPage * postsPerPage;
   const indexFirstPost = indexLastPost - postsPerPage;
   const currentPosts = recipes.slice(indexFirstPost, indexLastPost);
@@ -47,7 +53,7 @@ export default function Recipes() {
           {
             loading
               ? <h1>Loading...</h1>
-              : currentPosts.map(recipe => <RecipeTile title={recipe.title} id={recipe.id} img={recipe.image}/>)
+              : currentPosts.map(recipe => <RecipeTile title={recipe.title} id={recipe.id} img={recipe.image} key={recipe.id}/>)
           }
         </div>
         <Pagination paginate={paginate} postsPerPage={postsPerPage} totalPosts={recipes.length} currentPage={currentPage}/>
