@@ -1,0 +1,32 @@
+@import "../../vars.css";
+
+.pagination {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 50px;
+}
+.pagination div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background: var(--white);
+    color: var(--black);
+    width: 25px;
+    height: 25px;
+    padding: 3px;
+    cursor: pointer;
+    text-align: center;
+}
+.pagination .first, .pagination .last {
+    margin-inline: 10px;
+}
+.active {
+    background: var(--lapiz) !important;
+    color: var(--white) !important;
+    border: 2px solid var(--lapiz) !important;
+}

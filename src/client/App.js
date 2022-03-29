@@ -5,18 +5,20 @@ import {
   NavBar,
   LandingPage,
   Footer,
-  Recipes
+  Recipes,
+  RecipeDetail
 } from "./components/index.js";
 
 function App() {
   return (
       <Router>
-        <div id='app'>
-          <Route path='/' component={NavBar}/>
+        <Route path='/' component={NavBar}/>
+        <section id='app'>
           <Route exact path='/' component={LandingPage}/>
           <Route exact path='/recipes' component={Recipes} />
-          <Route path='/' component={Footer}/>
-        </div>
+          <Route exact path='/recipes/:id' component={RecipeDetail} />
+        </section>
+        <Route path='/' component={Footer}/>
       </Router>
   )
 }
