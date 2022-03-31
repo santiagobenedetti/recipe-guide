@@ -1,11 +1,17 @@
 import React from "react";
 import s from "./Recipes.module.css"
+import {NavLink} from "react-router-dom";
 
 export default function RecipeTile(props) {
+
+  const handleClick = () => {
+
+  }
+
   return(
-      <div className={s.recipeTile}>
+      <NavLink className={s.recipeTile} onClick={handleClick} to={`/recipes/${props.id}`}>
         <img src={props.img} alt='food'/>
         <div>{props.title}</div>
-      </div>
+      </NavLink>
   )
 }

@@ -1,0 +1,23 @@
+@import "../../vars.css";
+
+.load {
+    position: absolute;
+    left: 45%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 30px;
+    margin: 5%;
+}
+
+.header h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+.header img {
+    border-radius: 5px;
+}

@@ -56,8 +56,10 @@
     background: var(--white);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
-    gap: 40px;
 
+    text-decoration: none;
+
+    gap: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,4 +81,5 @@
     height: 100%;
     border-radius: 0 0 5px 5px;
     text-align: center;
+    text-decoration: none;
 }
