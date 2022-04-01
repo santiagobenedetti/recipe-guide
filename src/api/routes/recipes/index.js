@@ -1,12 +1,16 @@
 const { Router} = require("express");
 const router = Router();
 const axios = require('axios');
-const apiKey = 'ce23dcac7cfe498995c3350e5585e781'
+const apiKey = 'ce23dcac7cfe498995c3350e5585e781';
+
+const {db, RecipeMin} = require('../../db');
 
 router.get('/', async (req, res) => {
-  var recipes = await axios('http://localhost:3002')
-      .then(r => res.send(r.data.results))
-      .catch(e => {console.log(e); res.send( [])});
+  // var recipes = await axios('http://localhost:3002')
+  //     .then(r => res.send(r.data.results))
+  //     .catch(e => {console.log(e); res.send( [])});
+  const recipes = await RecipeMin.findAll();
+  res.send(recipes);
 })
 
 router.get('/:id', async (req, res) => {
@@ -363,6 +367,30 @@ router.get('/:id', async (req, res) => {
   // var recipeInfo = await axios(`https://api.spoonacular.com/recipes/${req.params.id}/information?apiKey=${apiKey}`)
   //     .then(r => {res.send(r.data); console.log(r.data)})
   //     .catch(e => {console.log(e); res.send({})})
+})
+
+router.post('/generateRecipes', async (req, res) => {
+  var response = await axios('http://localhost:3002')
+      .catch(e => console.log(e))
+
+
+  const recipes = response.data.results;
+
+  console.log(recipes)
+
+  recipes.forEach(async (recipe) => {
+    const {id, title, image} = recipe;
+    try {
+      const newRecipe = await RecipeMin.create({
+        id,
+        title,
+        image
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  })
+
 })
 
 module.exports = router;
