@@ -1,7 +1,8 @@
 const { Router} = require("express");
 const router = Router();
 const axios = require('axios');
-const apiKey = 'ce23dcac7cfe498995c3350e5585e781';
+const env = require('dotenv').config();
+const apiKey = process.env.API_KEY;
 
 const {db, RecipeMin} = require('../../db');
 

@@ -2,6 +2,7 @@ const morgan = require('morgan');
 const express = require('express');
 const routes = require('./routes/index')
 const cors = require('cors');
+const env = require('dotenv').config();
 
 const app = express();
 app.use(express.json());
@@ -10,7 +11,7 @@ app.use(cors())
 
 app.use('/', routes)
 
-const port = 3001
+const port = process.env.APP_PORT || 3001
 app.listen(port, () => {
   console.log('Listening on port ' + port);
 })
