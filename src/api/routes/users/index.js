@@ -13,17 +13,34 @@ initializePassport(passport, async (email) => {
   });
 })
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
-}))
-
-router.post('/register', async (req, res) => {
-  if (req.body.username && req.body.email && req.body.password) {
+router.post('/login', async (req, res) => {
+  console.log(req.body)
+  const {email, password} = req.body.form;
+  if (email && password) {
     const user = await Usuario.findAll({
       where: {
-        email: req.body.email
+        email: email
+      }
+    });
+    if (!user[0]) {
+      res.send({message: "incorrect Password or Email"})
+    } else {
+      await bcrypt.compare(password, user[0].password)
+          .then(result => {
+            result ? res.send({token: process.env.TOKEN}) : res.send({message: "incorrect Password or Email"})
+          })
+    }
+  } else {
+    res.send({message: "Missing parameters"})
+  }
+})
+
+router.post('/register', async (req, res) => {
+  const {username, email, password} = req.body.form;
+  if (username && email && password) {
+    const user = await Usuario.findAll({
+      where: {
+        email: email
       }
     });
     if (user[0]) {
@@ -31,13 +48,13 @@ router.post('/register', async (req, res) => {
     } else {
       try {
         let encrypted = "";
-        await bcrypt.hash(req.body.password, 10)
+        await bcrypt.hash(password, 10)
             .then(hash => encrypted = hash)
             .catch(e => console.log(e))
 
         const newUser = await new Usuario({
-          username: req.body.username,
-          email: req.body.email,
+          username: username,
+          email: email,
           password: encrypted
         });
         newUser.save();

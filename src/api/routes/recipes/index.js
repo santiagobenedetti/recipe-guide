@@ -7,11 +7,11 @@ const apiKey = process.env.API_KEY;
 const {db, RecipeMin} = require('../../db');
 
 router.get('/', async (req, res) => {
-  // var recipes = await axios('http://localhost:3002')
-  //     .then(r => res.send(r.data.results))
-  //     .catch(e => {console.log(e); res.send( [])});
-  const recipes = await RecipeMin.findAll();
-  res.send(recipes);
+  var recipes = await axios('http://localhost:3002')
+      .then(r => res.send(r.data.results))
+      .catch(e => {console.log(e); res.send( [])});
+  //const recipes = await RecipeMin.findAll();
+  //res.send(recipes);
 })
 
 router.get('/:id', async (req, res) => {

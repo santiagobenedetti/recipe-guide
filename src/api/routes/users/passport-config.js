@@ -25,8 +25,17 @@ function initialize(passport, getUserByEmail) {
     usernameField: 'email'
   }, authenticateUser))
 
-  passport.serializeUser((user, done) => {})
-  passport.deserializeUser((id, done) => {})
+  passport.serializeUser((user, done) => {
+    done(null, user.email)
+  })
+  passport.deserializeUser(async (email, done) => {
+    try {
+      const user = await getUserByEmail(email)
+      done(null, user)
+    } catch (e) {
+      done(e)
+    }
+  })
 }
 
 module.exports = initialize;

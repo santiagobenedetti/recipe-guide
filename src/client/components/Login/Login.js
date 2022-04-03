@@ -1,25 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import s from "./Login.module.css";
 import {NavLink} from "react-router-dom";
 
 function Login() {
 
-  const handleLogin = () => {
-    axios.post('http://localhost:3001/login', {})
+  const [form, setForm] = useState({email: "", password: ""});
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:3001/users/login', {form})
+        .then(res => {
+          if (res.data.message) {
+            setError(res.data.message);
+            setForm({email: "", password: ""});
+          } else {
+            localStorage.setItem('token', res.data.token);
+            window.location.pathname = '/favorites'
+          }
+        })
   }
 
   return(
       <div className={s.formContainer}>
         <h1>Login</h1>
+        {error ? <h3 className={s.error}>{error}</h3> : <br/>}
         <form>
           <div>
             <label form='email'>Email</label>
-            <input type='email' id='email' name='email' required />
+            <input type='email' id='email' name='email' required value={form.email} onChange={handleChange}/>
           </div>
           <div>
             <label form='password'>Password</label>
-            <input type='password' id='password' name='password' required />
+            <input type='password' id='password' name='password' required value={form.password} onChange={handleChange} />
           </div>
         </form>
         <button className={s.submit} onClick={handleLogin}>Login</button>
