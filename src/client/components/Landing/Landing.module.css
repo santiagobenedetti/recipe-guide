@@ -61,6 +61,10 @@
 .create:hover {
     background-position: 100%;
 }
+.create a {
+    text-decoration: none;
+    color: var(--white);
+}
 
 .image {
     background-size: cover;

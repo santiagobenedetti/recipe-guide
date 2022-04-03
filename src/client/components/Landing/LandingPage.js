@@ -2,6 +2,8 @@ import s from './Landing.module.css';
 import * as Icons from "@material-ui/icons";
 import React from "react";
 import family from './family Cropped.jpg';
+import {NavLink} from "react-router-dom";
+import {click} from "@testing-library/user-event/dist/click";
 
 export default function LandingPage() {
   return (
@@ -17,7 +19,7 @@ export default function LandingPage() {
             <button>Search</button>
           </div>
         </div>
-        <div className={s.create}>CREATE AN ACCOUNT FOR FREE</div>
+        <div onClick={() => click(document.getElementById('register'))} className={s.create}><NavLink to='/register' id='register'>CREATE AN ACCOUNT FOR FREE</NavLink></div>
         <img src={family} className={s.image} alt='family'/>
       </React.Fragment>
   )
