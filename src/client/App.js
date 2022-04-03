@@ -6,7 +6,9 @@ import {
   LandingPage,
   Footer,
   Recipes,
-  RecipeDetail
+  RecipeDetail,
+  Login,
+  Register
 } from "./components/index.js";
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
           <Route exact path='/' component={LandingPage}/>
           <Route exact path='/recipes' component={Recipes} />
           <Route exact path='/recipes/:id' component={RecipeDetail} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
         </section>
         <Route path='/' component={Footer}/>
       </Router>
