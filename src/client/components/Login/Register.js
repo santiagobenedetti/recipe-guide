@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import s from "./Login.module.css";
+import {NavLink} from "react-router-dom";
 
 function Register() {
 
@@ -30,22 +31,28 @@ function Register() {
   }
 
   return(
-      <form>
-        {error ? <h2 className={s.error}>{error}</h2> : <br/>}
-        <div>
-          <label form='username'>Username</label>
-          <input type='text' id='username' name='username' required onChange={handleChange} />
+      <div className={s.formContainer}>
+        <h1>Register now!</h1>
+        {error ? <h3 className={s.error}>{error}</h3> : <br/>}
+        <form>
+          <div>
+            <label form='username'>Username</label>
+            <input type='text' id='username' name='username' required onChange={handleChange} />
+          </div>
+          <div>
+            <label form='email'>Email</label>
+            <input type='email' id='email' name='email' required onChange={handleChange} />
+          </div>
+          <div>
+            <label form='password'>Password</label>
+            <input type='password' id='password' name='password' required onChange={handleChange} />
+          </div>
+        </form>
+        <button className={s.submit} onClick={handleRegister}>Register</button>
+        <div className={s.login}>
+          <p>Already have an account? <NavLink to={'/login'}>Sign in!</NavLink></p>
         </div>
-        <div>
-          <label form='email'>Email</label>
-          <input type='email' id='email' name='email' required onChange={handleChange} />
-        </div>
-        <div>
-          <label form='password'>Password</label>
-          <input type='password' id='password' name='password' required onChange={handleChange} />
-        </div>
-        <button onClick={handleRegister}>Register</button>
-      </form>
+      </div>
   )
 }
 
