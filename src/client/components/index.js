@@ -5,3 +5,4 @@ export {default as Recipes} from "./Recipes/Recipes";
 export {default as RecipeDetail} from "./RecipeDetail/RecipeDetail";
 export {default as Login} from "./Login/Login";
 export {default as Register} from "./Login/Register";
+export {default as Home} from "./Home/Home"

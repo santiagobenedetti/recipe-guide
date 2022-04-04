@@ -24,7 +24,7 @@ function Login() {
             setForm({email: "", password: ""});
           } else {
             localStorage.setItem('token', res.data.token);
-            window.location.pathname = '/favorites'
+            window.location.pathname = '/home'
           }
         })
   }

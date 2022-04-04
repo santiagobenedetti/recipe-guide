@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const flash = require('express-flash');
 const session = require('express-session');
 const {Usuario} = require('../../db');
+const jwt = require('jsonwebtoken');
 
 initializePassport(passport, async (email) => {
   return Usuario.findOne({
@@ -27,13 +28,33 @@ router.post('/login', async (req, res) => {
     } else {
       await bcrypt.compare(password, user[0].password)
           .then(result => {
-            result ? res.send({token: process.env.TOKEN}) : res.send({message: "incorrect Password or Email"})
+            if (result) {
+              jwt.sign(user[0].email, "secret", {},  (err, token) => {
+                console.log(token)
+                res.json({token})
+              })
+            } else {
+              res.send({message: "incorrect Password or Email"})
+            }
           })
     }
   } else {
     res.send({message: "Missing parameters"})
   }
 })
+
+router.post("/isLog", async (req, res) => {
+  const { token } = req.body;
+  console.log(token)
+  var userEmail = "";
+  await jwt.verify(token, "secret", {}, (err, authData) => {
+    userEmail = authData
+  });
+  if (userEmail) {
+    const userDb = await Usuario.findOne({where: {email: userEmail}});
+    res.send(userDb);
+  } else res.send(false);
+});
 
 router.post('/register', async (req, res) => {
   const {username, email, password} = req.body.form;
