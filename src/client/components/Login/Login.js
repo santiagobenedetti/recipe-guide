@@ -32,7 +32,7 @@ function Login() {
   return(
       <div className={s.formContainer}>
         <h1>Login</h1>
-        {error ? <h3 className={s.error}>{error}</h3> : <br/>}
+        {error ? <span className={s.error}>{error}</span> : <br/>}
         <form>
           <div>
             <label form='email'>Email</label>

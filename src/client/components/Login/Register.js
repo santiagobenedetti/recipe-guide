@@ -5,6 +5,8 @@ import {NavLink} from "react-router-dom";
 
 function Register() {
 
+  // TODO -> validate email and password fields
+
   const [form, setForm] = useState({username: "", email: "", password: ""})
   const [error, setError] = useState("");
 
