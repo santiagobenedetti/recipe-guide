@@ -23,8 +23,8 @@ function Login() {
             setError(res.data.message);
             setForm({email: "", password: ""});
           } else {
-            localStorage.setItem('token', res.data.token);
-            window.location.pathname = '/home'
+            sessionStorage.setItem('token', res.data.token);
+            window.location.pathname = '/home' // TODO -> look for a way of keeping SPA
           }
         })
   }
