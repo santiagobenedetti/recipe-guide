@@ -12,7 +12,7 @@ export default function Home() {
           console.log(res.data);
           setUser(res.data);
         });
-  }, )
+  }, [])
 
   return(
       <div>Hello {user.username}</div>
