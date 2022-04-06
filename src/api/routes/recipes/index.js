@@ -15,17 +15,19 @@ router.get('/', async (req, res) => {
   //res.send(recipes);
 
 
-  var recipes = fs.readFileSync(__dirname + '/recipes-500.json');
-  recipes = JSON.parse(recipes);
+  var recipes = await RecipeMin.findAll();
+  //recipes = JSON.parse(recipes);
+  recipes = recipes.map(r => r.get({plain: true}));
   console.log(recipes)
-  res.json(recipes.results);
+  res.json(recipes);
 })
 
 router.get('/:id', async (req, res) => {
   console.log('Estoy buscando en spooncular');
-  // TODO -> Seguramente valga la pena limpiar el object antes de mandarlo, solo con las cosas necesarias
 
-  res.send({
+  let recipeInfo = {};
+
+  recipeInfo = {
     "vegetarian": false,
     "vegan": false,
     "glutenFree": false,
@@ -370,11 +372,14 @@ router.get('/:id', async (req, res) => {
     "analyzedInstructions": [],
     "originalId": null,
     "spoonacularSourceUrl": "https://spoonacular.com/pasta-with-garlic-scallions-cauliflower-breadcrumbs-716429"
-  })
+  };
 
-  // var recipeInfo = await axios(`https://api.spoonacular.com/recipes/${req.params.id}/information?apiKey=${apiKey}`)
-  //     .then(r => {res.send(r.data); console.log(r.data)})
+
+  // await axios(`https://api.spoonacular.com/recipes/${req.params.id}/information?apiKey=${apiKey}`)
+  //     .then(r => {recipeInfo = r.data; console.log(r.data)})
   //     .catch(e => {console.log(e); res.send({})})
+
+  res.send(recipeInfo)
 })
 
 router.post('/generateRecipes', async (req, res) => {
