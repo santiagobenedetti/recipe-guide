@@ -28,10 +28,13 @@ export default function RecipeDetail() {
         <GoBackButton />
         {
           loading ? <h2 className={s.load}>Loading...</h2> :
-              <div className={s.header}>
-                <h1>{recipe.title}</h1>
-                <img src={recipe.image} alt='img'/>
-              </div>
+              <React.Fragment>
+                <div className={s.header}>
+                  <h1>{recipe.title}</h1>
+                  <img src={recipe.image} alt='img'/>
+                </div>
+                <div dangerouslySetInnerHTML={{ __html: recipe.summary }} />
+              </React.Fragment>
         }
       </div>
   )
