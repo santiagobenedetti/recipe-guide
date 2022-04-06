@@ -1,17 +1,24 @@
 const { Router} = require("express");
 const router = Router();
 const axios = require('axios');
+const fs = require('fs');
 const env = require('dotenv').config();
 const apiKey = process.env.API_KEY;
 
 const {db, RecipeMin} = require('../../db');
 
 router.get('/', async (req, res) => {
-  var recipes = await axios('http://localhost:3002')
-      .then(r => res.send(r.data.results))
-      .catch(e => {console.log(e); res.send( [])});
+  // var recipes = await axios('http://localhost:3002')
+  //     .then(r => res.send(r.data.results))
+  //     .catch(e => {console.log(e); res.send( [])});
   //const recipes = await RecipeMin.findAll();
   //res.send(recipes);
+
+
+  var recipes = fs.readFileSync(__dirname + '/recipes-500.json');
+  recipes = JSON.parse(recipes);
+  console.log(recipes)
+  res.json(recipes.results);
 })
 
 router.get('/:id', async (req, res) => {
