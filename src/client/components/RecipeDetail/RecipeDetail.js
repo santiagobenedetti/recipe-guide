@@ -25,7 +25,7 @@ export default function RecipeDetail() {
 
   return(
       <div>
-        <GoBackButton />
+        <GoBackButton url={'/recipes'}/>
         {
           loading ? <h2 className={s.load}>Loading...</h2> :
               <React.Fragment>
