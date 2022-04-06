@@ -31,7 +31,11 @@ export default function Pagination({postsPerPage, totalPosts, paginate, currentP
               onClick={() => paginate(page)}>{page}
           </div>
       ))}
-      <div key={lastPage} className={currentPage === lastPage ? `${s.active} ${s.last}`: s.last}  onClick={() => paginate(lastPage)}>{lastPage}</div>
+      {
+        lastPage === 1 ? <React.Fragment/>
+            : <div key={lastPage} className={currentPage === lastPage ? `${s.active} ${s.last}` : s.last}
+                   onClick={() => paginate(lastPage)}>{lastPage}</div>
+      }
     </div>
   )
 }

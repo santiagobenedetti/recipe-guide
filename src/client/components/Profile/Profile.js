@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-export default function Home() {
+export default function Profile() {
 
   const [user, setUser] = useState({});
 

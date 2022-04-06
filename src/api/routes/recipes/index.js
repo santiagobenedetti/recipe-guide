@@ -16,9 +16,7 @@ router.get('/', async (req, res) => {
 
 
   var recipes = await RecipeMin.findAll();
-  //recipes = JSON.parse(recipes);
   recipes = recipes.map(r => r.get({plain: true}));
-  console.log(recipes)
   res.json(recipes);
 })
 

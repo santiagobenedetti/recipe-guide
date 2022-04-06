@@ -9,7 +9,7 @@ import {
   RecipeDetail,
   Login,
   Register,
-  Home
+  Profile
 } from "./components/index.js";
 import axios from "axios";
 
@@ -41,7 +41,7 @@ function App() {
             {isLogged ? <Redirect to={'/home'}/> : <Login />}
           </Route>
           <Route exact path='/register' component={Register} />
-          <Route exact path='/home' component={Home} /> {/* TODO -> seguramente eliminar home y hacer otra cosa*/}
+          <Route exact path='/profile' component={Profile} /> {/* TODO -> seguramente eliminar home y hacer otra cosa*/}
           <Route exact path='/favorites'>
             {isLogged ? <div>componente favorites</div> : <Redirect to={'/login'}/>}
           </Route>

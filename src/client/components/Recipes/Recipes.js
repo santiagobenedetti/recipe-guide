@@ -4,10 +4,14 @@ import s from "./Recipes.module.css"
 import RecipeTile from "./RecipeTile";
 import Pagination from "../Pagination/Pagination";
 import axios from "axios";
+import {NavLink, useLocation, useParams} from "react-router-dom";
 
 export default function Recipes() {
+  let location = useLocation()
 
   const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(12);
@@ -21,9 +25,14 @@ export default function Recipes() {
     console.log(recipes)
   }
 
-  useEffect( () => {
-    getRecipes();
-  }, [])
+  useEffect( async () => {
+    await getRecipes();
+    const queryParams = new URLSearchParams(location.search);
+    const search = queryParams.get("search");
+    if (search) {
+      setRecipes(recipes.filter(r => r.title.toLowerCase().includes(search.toLowerCase())))
+    }
+  }, [location.search])
 
   useEffect(() => {
     setTimeout(
@@ -33,9 +42,13 @@ export default function Recipes() {
 
   const indexLastPost = currentPage * postsPerPage;
   const indexFirstPost = indexLastPost - postsPerPage;
+  //const [currentPosts, setCurrentPosts] = useState(recipes.slice(indexFirstPost, indexLastPost))
   const currentPosts = recipes.slice(indexFirstPost, indexLastPost);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  /*SEARCHBAR*/
+
 
   return (
       <React.Fragment>
@@ -44,9 +57,9 @@ export default function Recipes() {
           <div className={s.searchBar}>
             <div>
               <Icons.Search/>
-              <input type='text' placeholder='Search now...'/>
+              <input type='text' placeholder='Search now...' value={search} onChange={(e) => setSearch(e.target.value)}/>
             </div>
-            <button>Search</button>
+            <NavLink className={s.searchButton} to={'/recipes?search=' + search}>Search</NavLink>
           </div>
         </div>
         <div className={s.recipeContainer}>

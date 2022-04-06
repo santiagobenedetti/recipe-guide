@@ -14,12 +14,14 @@ export default function NavBar ({isLogged, setLogged}) {
     <nav className={`${s.nav}`}>
       <NavLink to={'/'}><Icons.Restaurant /></NavLink>
       <ul>
-        <li><NavLink to={'/home'}>Home</NavLink></li>
         <li><NavLink to={'/about'}>About</NavLink></li>
         <li><NavLink to={'/recipes'}>Recipes</NavLink></li>
         <li><NavLink to={'/favorites'}>Favorites</NavLink></li>
         {isLogged
-            ? <li><NavLink to={'/'} onClick={signOut}>Sign out</NavLink></li>
+            ? <React.Fragment>
+                <li><NavLink to={'/profile'}>Profile</NavLink></li>
+                <li><NavLink to={'/'} onClick={signOut}>Sign out</NavLink></li>
+              </React.Fragment>
             : <li><NavLink to={'/login'}>Log In</NavLink></li>
         }
       </ul>
