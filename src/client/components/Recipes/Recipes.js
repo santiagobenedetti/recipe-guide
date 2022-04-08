@@ -18,20 +18,25 @@ export default function Recipes() {
 
   async function getRecipes() {
     setLoading(true);
+    var data;
     await axios.get("http://localhost:3001/getRecipes")
-        .then(res => setRecipes(res.data))
+        .then(res => data = (res.data))
         .catch(e => console.log(e))
     setLoading(false);
-    console.log(recipes)
+    return data;
   }
 
-  useEffect( async () => {
-    await getRecipes();
-    const queryParams = new URLSearchParams(location.search);
-    const search = queryParams.get("search");
-    if (search) {
-      setRecipes(recipes.filter(r => r.title.toLowerCase().includes(search.toLowerCase())))
-    }
+  useEffect( () => {
+    getRecipes().then(data => {
+      const queryParams = new URLSearchParams(location.search);
+      const search = queryParams.get("search");
+      if (search) {
+        setSearch(search);
+        setRecipes(data.filter(r => r.title.toLowerCase().includes(search.toLowerCase())));
+      } else {
+        setRecipes(data);
+      }
+    });
   }, [location.search])
 
   useEffect(() => {

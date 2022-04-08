@@ -33,15 +33,19 @@
     border: none;
     text-align: center;
 }
-.searchBar button {
+.searchBar a {
     border: none;
     border-radius: 5px;
     background: #807E7E;
     padding-inline: 30px;
     color: var(--white);
     cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.searchBar button:hover {
+.searchBar a:hover {
     background: var(--black);
     border: 1px solid #807E7E;
     transition: background 100ms ease-in-out;
