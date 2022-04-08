@@ -58,6 +58,15 @@
 .formContainer .login a {
 
 }
+.formContainer input {
+    background: var(--white);
+    font-size: .9em;
+    padding: 5px;
+    border: 1px solid var(--white);
+}
+.formContainer input:focus {
+    border: 1px solid var(--lapiz);
+}
 
 .error {
     color: #721c24;

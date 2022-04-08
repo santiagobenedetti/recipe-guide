@@ -29,3 +29,11 @@
     text-decoration: none;
     color: var(--white);
 }
+.nav ul li:hover {
+    transform: scale(1.2);
+    transition: transform 300ms ease-in-out;
+}
+.nav svg:hover {
+    transform: scale(2);
+    transition: transform 300ms ease-in-out;
+}
