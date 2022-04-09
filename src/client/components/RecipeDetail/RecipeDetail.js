@@ -15,10 +15,11 @@ export default function RecipeDetail() {
     const getInfo = async () => {
       console.log('estoy buscando a la api')
       await axios.get('http://localhost:3001/getRecipes/' + id)
-          .then(res => setRecipe(res.data))
+          .then(res => {setRecipe(res.data); console.log('ya busque', res.data)})
           .catch(e => console.log(e))
+
       setLoading(false);
-      console.log('ya busque', recipe)
+      console.log(recipe.analyzedInstructions)
     }
     getInfo();
   }, [])
@@ -30,10 +31,32 @@ export default function RecipeDetail() {
           loading ? <h2 className={s.load}>Loading...</h2> :
               <React.Fragment>
                 <div className={s.header}>
-                  <h1>{recipe.title}</h1>
+                  <div>
+                    <h1>{recipe.title}</h1>
+                    <p dangerouslySetInnerHTML={{ __html: recipe.summary }} />
+                  </div>
                   <img src={recipe.image} alt='img'/>
                 </div>
-                <div dangerouslySetInnerHTML={{ __html: recipe.summary }} />
+                <section className={s.preparation}>
+                  <div className={s.instructions}>
+                    {
+                      recipe.analyzedInstructions ?
+                       <ol>
+                         {recipe.analyzedInstructions[0].steps.map(i => <li key={i.number}>{i.step}</li>)}
+                       </ol>
+                        : <p>{recipe.instructions}</p>
+                    }
+                  </div>
+                  <ul className={s.ingredients}>
+                    {
+                      recipe.extendedIngredients ?
+                      recipe.extendedIngredients.map(i =>
+                          <li key={i.name}>{i.name} {i.unit === 'servings' ? '' : `(${i.measures.metric.amount} ${i.measures.metric.unitShort})`}</li>
+                      )
+                      : recipe.ingredients
+                    }
+                  </ul>
+                </section>
               </React.Fragment>
         }
       </div>

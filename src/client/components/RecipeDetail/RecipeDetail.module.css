@@ -21,3 +21,25 @@
 .header img {
     border-radius: 5px;
 }
+.header p {
+    line-height: 120%;
+}
+
+.preparation {
+    display: flex;
+    justify-content: space-between;
+    margin-inline: 50px;
+}
+.preparation .instructions {
+    max-width: 80ch;
+}
+.preparation .instructions li {
+    margin-bottom: 15px;
+    line-height: 125%;
+}
+.preparation .ingredients {
+    min-width: 40%;
+}
+.preparation .ingredients li {
+    margin-bottom: 5px;
+}
