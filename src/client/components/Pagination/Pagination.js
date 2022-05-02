@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./Pagination.module.css"
+import * as Icons from "@material-ui/icons"
 
 export default function Pagination({postsPerPage, totalPosts, paginate, currentPage}) {
   var pageNumbers = [];
@@ -24,6 +25,7 @@ export default function Pagination({postsPerPage, totalPosts, paginate, currentP
   return(
     <div className={s.pagination}>
       <div key={1} className={currentPage === 1 ? `${s.active} ${s.first}`: s.first} onClick={() => paginate(1)}>1</div>
+      {currentPage !== 1 ? <div onClick={() => paginate(currentPage - 1)}><Icons.KeyboardArrowLeft /></div> : <></>}
       {pageNumbers.map(page => (
           <div
               key={page}
@@ -31,6 +33,7 @@ export default function Pagination({postsPerPage, totalPosts, paginate, currentP
               onClick={() => paginate(page)}>{page}
           </div>
       ))}
+      {currentPage !== lastPage ? <div onClick={() => paginate(currentPage + 1)}><Icons.KeyboardArrowRight /></div> : <></>}
       {
         lastPage === 1 ? <React.Fragment/>
             : <div key={lastPage} className={currentPage === lastPage ? `${s.active} ${s.last}` : s.last}
